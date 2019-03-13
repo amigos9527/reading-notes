@@ -42,13 +42,18 @@ public class Test {
 内部类对象中不能有静态成员，原因很简单，内部类的实例对象是外部类实例对象的一个成员。
 2. 方法内部类（局部内部类）
 
+```java
 public class A {
-
+ 
     public void A(){
         System.out.println("方法内部类");
     }
-
+ 
 }
+
+```
+
+```java
 public class Test {
     
     public void methodInner(){
@@ -59,27 +64,40 @@ public class Test {
         new B().A();
     }
 }
+
+```
+
 方法内部类特点：
 
 方法中的内部类没有访问修饰符， 即方法内部类对包围它的方法之外的任何东西都不可见。
 方法内部类只能够访问该方法中的局部变量，所以也叫局部内部类。而且这些局部变量一定要是final修饰的常量。
+
 3. 匿名内部类(在Android里最常见的一种)
   当我们把内部类的定义和声明写到一起时，就不用给这个类起个类名而是直接使用了，这种形式的内部类根本就没有类名，因此我们叫它匿名内部类。
 
+```java
 public abstract class A implements B{
-
+ 
     public void A(){
         System.out.println("A");
     }
-
+ 
 }
+
+```
+
+```java
  public interface B{
      
      public void B();
-
+ 
  }
-public class Test {
 
+```
+
+```java
+public class Test {
+ 
     public static void main(String[] args) {
         //new出接口或者实现类
         A a= new A (){
@@ -91,19 +109,25 @@ public class Test {
         a.A();
         a.B();
 }
+
+```
+
 匿名内部类的特点：
 一个类用于继承其他类或是实现接口，并不需要增加额外的方法，只是对继承方法的事先或是覆盖。
 只是为了获得一个对象实例，不需要知道其实际类型。
 类名没有意义，也就是不需要使用到。
+
 4. 嵌套内部类（静态内部类）
   嵌套内部类，就是修饰为static的内部类。声明为 static 的内部类，不需要内部类对象和外部类对象之间的联系，就是说我们可以直接引用outer.inner，即不需要创建外部类，也不需要创建内部类。
 
 　生成静态内部类对象的方式为：
 　OuterClass.InnerClass inner = new OuterClass.InnerClass();
 
+```java
+ 
 class StaticInner {
     private static int a = 4;
-
+ 
     // 静态内部类
     public static class Inner {
         public void test() {
@@ -113,13 +137,16 @@ class StaticInner {
         }
     }
 }
-
+ 
 public class StaticInnerClassTest {
     public static void main(String[] args) {
         StaticInner.Inner inner = new StaticInner.Inner();
         inner.test();
     }
 }
+
+```
+
 嵌套类和普通的内部类还有一个区别：普通内部类不能有 static 数据和 static 属性，也不能包含嵌套类，但嵌套类可以。而嵌套类不能声明为 private ，一般声明为 public，方便调用。
 
 三、使用内部类的好处
